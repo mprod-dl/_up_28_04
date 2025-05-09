@@ -1,0 +1,79 @@
+{% extends 'base.html' %} <!-- Грузим шаблон -->
+
+{% block title %}Категории и Теги - Неофициальный сайт бренда питьевой воды Святой Источник{% endblock %}
+<!-- Меняем название -->
+
+<h1>Профиль</h1>
+
+<!-- Контент -->
+{% block content %}
+
+<main class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white bg-danger rounded shadow-sm">
+        <div class="lh-1">
+            <h1 class="h6 mb-0 text-white lh-1 fw-semibold">{{ user.username }}</h1>
+        </div>
+    </div>
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Карточка пользователя</h6>
+        <div class="d-flex text-body-secondary pt-3">
+            <p class="pb-3 mb-0 small lh-sm"> <strong class="d-block text-gray-dark">Email</strong>
+                {{ user.email }}
+            </p>
+        </div>
+        <div class="d-flex text-body-secondary pt-1">
+            <p class="pb-3 mb-0 small lh-sm"> <strong class="d-block text-gray-dark">ФИО</strong>
+                {% if user.get_full_name %} {{ user.get_full_name }} {% else %} Отсутствует {% endif %}
+            </p>
+        </div>
+        <div class="d-flex text-body-secondary pt-1">
+            <p class="pb-3 mb-0 small lh-sm"> <strong class="d-block text-gray-dark">Сотрудник</strong>
+                {% if user.is_staff %} Да {% else %} Нет {% endif %}
+            </p>
+        </div>
+        <div class="d-flex text-body-secondary pt-1 border-bottom">
+            <p class="pb-3 mb-0 small lh-sm"> <strong class="d-block text-gray-dark">Суперпользователь</strong>
+                {% if user.is_superuser %} Да {% else %} Нет {% endif %}
+            </p>
+        </div>
+        <div class="d-flex text-body-secondary pt-3">
+            <p class="pb-3 mb-0 small lh-sm"> <strong class="d-block text-gray-dark">Дата последнего входа</strong>
+                {{ user.last_login }}
+            </p>
+        </div>
+        <div class="d-flex text-body-secondary pt-1">
+            <p class="pb-3 mb-0 small lh-sm"> <strong class="d-block text-gray-dark">Дата регистрации</strong>
+                {{ user.date_joined }}
+            </p>
+        </div>
+    </div>
+
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Группы пользователя</h6>
+        {% for group in user.groups.all %}
+        <div class="d-flex text-body-secondary pt-3">
+            <strong class="d-block text-gray-dark">{{ group.name }}</strong>
+        </div>
+        {% empty %}
+        <strong class="d-block text-gray-dark pt-2">Группы отсутствуют.</strong>
+        {% endfor %}
+    </div>
+
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <h6 class="border-bottom pb-2 mb-0">Права пользователя</h6>
+        {% for group in user.user_permissions.all %}
+        <div class="d-flex text-body-secondary pt-3">
+            <strong class="d-block text-gray-dark">{{ perm.name }} ({{ perm.codename }})</strong>
+        </div>
+        {% empty %}
+        <strong class="d-block text-gray-dark pt-2">Права отсутствуют.</strong>
+        {% endfor %}
+    </div>
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Выйти</button>
+    </form>
+</main>
+
+{% endblock %}

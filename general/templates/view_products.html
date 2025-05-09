@@ -1,0 +1,55 @@
+{% extends 'base.html' %} <!-- Грузим шаблон -->
+
+{% block title %}Ассортимент - Неофициальный сайт бренда питьевой воды Святой Источник{% endblock %}
+<!-- Меняем название -->
+
+<!-- Контент -->
+{% block content %}
+<div class="container py-3" id="product-cards">
+    <h2 class="pb-3 fw-bold {% if not filter_title %}border-bottom{% endif %}">Наш ассортимент</h2>
+    {% if filter_title %}
+    <h4 class="pb-3 fw-bold border-bottom">{{ filter_title }}
+        <a href="/" class="text-decoration-none d-flex">Сбросить фильтр</a>
+    </h4>
+
+    {% endif %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 pt-3">
+
+        {% for product in products %}
+        <div class="col">
+            <div class="card rounded-5 p-5 h-100 shadow-sm">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="Product 1"
+                    style="object-fit: contain; height: 250px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text text-muted">{{ product.description }}</p>
+                    <p class="fw-bold text-danger fs-5">{{ product.price }} ₽</p>
+
+                    <p class="fw-semibold">Категория:
+                        <a href="/by_category/{{ product.category.id }}"
+                            class="text-decoration-none badge bg-danger">{{ product.category.name }}</a>
+                    </p>
+
+                    <p class="fw-semibold">Теги:
+                        {% for tag in product.tags.all %}
+                        <a href="/by_tag/{{ tag.id }}" class="text-decoration-none badge bg-danger">{{ tag.name }}</a>
+                        {% empty %}
+                        <span class="badge bg-secondary">Увы, тегов нет</span>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div>
+                    <a href="/product/{{ product.id }}/" class="btn btn-outline-primary w-100">Подробнее</a>
+                    <a href="/cart/add/{{ product.id }}/" class="btn btn-primary w-100 mt-3">В корзину</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <h5 class="text-body-emphasis">Увы, все выпили.</h5>
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

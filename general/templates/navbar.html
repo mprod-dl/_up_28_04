@@ -1,0 +1,58 @@
+<nav class="container navbar navbar-expand-lg" style="background-color: #e3f2fd; border-radius: 0 0 2rem 2rem;">
+    <div class="container-fluid px-4 py-2 d-flex align-items-center justify-content-between">
+
+        <a class="navbar-brand fw-bold text-danger me-4" href="#">СВЯТОЙ <br> ИСТОЧНИК</a>
+
+        <div class="d-flex flex-column flex-md-row justify-content-center align-items-center mx-auto text-center gap-4">
+
+            {% if active_tab == 'view_products' %}
+            <a href="/" class="text-decoration-none {% if active_nav == 'view_products' %}text-danger fw-semibold{% endif %} d-flex flex-column align-items-center">
+                <i class="bi bi-heart"></i>
+                <span>Список товаров</span>
+            </a>
+
+            <a href="/add_product/" class="text-decoration-none {% if active_nav == 'add_product' %}text-danger fw-semibold{% endif %} d-flex flex-column align-items-center">
+                <i class="bi bi-heart"></i>
+                <span>Добавить товар</span>
+            </a>
+            {% endif %}
+
+            {% if active_tab == 'view_categories_and_tags' %}
+            <a href="/categories_and_tags/"
+                class="text-decoration-none {% if active_nav == 'view_categories_and_tags' %}text-danger fw-semibold{% endif %} d-flex flex-column align-items-center">
+                <i class="bi bi-heart"></i>
+                <span>Список категорий и тегов</span>
+            </a>
+
+            <a href="/add_category/"
+                class="text-decoration-none {% if active_nav == 'add_category' %}text-danger fw-semibold{% endif %} d-flex flex-column align-items-center">
+                <i class="bi bi-heart"></i>
+                <span>Добавить Категорию</span>
+            </a>
+
+            <a href="/add_tag/"
+                class="text-decoration-none {% if active_nav == 'add_tag' %}text-danger fw-semibold{% endif %} d-flex flex-column align-items-center">
+                <i class="bi bi-heart"></i>
+                <span>Добавить тег</span>
+            </a>
+            {% endif %}
+
+            {% if active_tab == 'view_cart' %}
+            <a href="/cart/"
+                class="text-decoration-none {% if active_nav == 'view_cart' %}text-danger fw-semibold{% endif %} d-flex flex-column align-items-center">
+                <i class="bi bi-heart"></i>
+                <span>Корзина</span>
+            </a>
+
+            <a href="/cart/clear/"
+                class="text-decoration-none {% if active_nav == 'add_tag' %}text-danger fw-semibold{% endif %} d-flex flex-column align-items-center">
+                <i class="bi bi-heart"></i>
+                <span>Очистить корзину</span>
+            </a>
+            {% endif %}
+
+        </div>
+
+        <a href="/admin/" class="btn btn-primary rounded-pill px-4 ms-4">Панель администратора</a>
+    </div>
+</nav>

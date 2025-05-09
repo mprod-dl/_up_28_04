@@ -1,0 +1,32 @@
+{% extends 'base.html' %} <!-- Грузим шаблон -->
+
+{% block title %}Администрирование - Неофициальный сайт бренда питьевой воды Святой Источник{% endblock %}
+<!-- Меняем название -->
+
+<!-- Контент -->
+{% block content %}
+
+<div class="containter ">
+    <h2 class="mb-4">{{ form_label }}</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+            <div class="text-danger">
+                {{ field.errors }}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+</div>
+
+{% endblock %}

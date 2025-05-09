@@ -1,0 +1,32 @@
+<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mt-5" style="background-color: #e3f2fd;">
+    <div class="col mb-3">
+        <p class="text-danger px-5 fw-semibold">Saint Spring Company 2025</p>
+    </div>
+    <div class="col mb-3">
+        <h5 class="{% if active_tab == 'view_products' %} text-danger fw-semibold {% endif %}">Ассортимент</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="/" class="nav-link p-0 {% if active_nav == 'view_products' %} text-danger {% else %} text-body-secondary {% endif %}">Список товаров</a></li>
+            <li class="nav-item mb-2"><a href="/add_product/" class="nav-link p-0 {% if active_nav == 'add_product' %} text-danger {% else %} text-body-secondary {% endif %}">Добавить товар</a></li>
+        </ul>
+    </div>
+    <div class="col mb-3">
+        <h5 class="{% if active_tab == 'view_categories_and_tags' %} text-danger fw-semibold {% endif %}">Категории и теги</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="/categories_and_tags/" class="nav-link p-0 {% if active_nav == 'view_categories_and_tags' %} text-danger {% else %} text-body-secondary {% endif %}">Список категорий и тегов</a></li>
+            <li class="nav-item mb-2"><a href="/add_category/" class="nav-link p-0 {% if active_nav == 'add_category' %} text-danger {% else %} text-body-secondary {% endif %}">Добавить категорию</a></li>
+            <li class="nav-item mb-2"><a href="/add_tag/" class="nav-link p-0 {% if active_nav == 'add_tag' %} text-danger {% else %} text-body-secondary {% endif %}">Добавить тег</a></li>
+        </ul>
+    </div>
+    <div class="col mb-3">
+        <h5 class="{% if active_tab == 'view_cart' %} text-danger fw-semibold {% endif %}">Корзина</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="/cart/" class="nav-link p-0 {% if active_nav == 'view_cart' %} text-danger {% else %} text-body-secondary {% endif %}">Корзина</a></li>
+        </ul>
+    </div>
+    <div class="col mb-3">
+        <h5 class="{% if active_tab == 'view_profile' %} text-danger fw-semibold {% endif %}">Профиль</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="/profile/" class="nav-link p-0 {% if active_nav == 'view_profile' %} text-danger {% else %} text-body-secondary {% endif %}">Профиль</a></li>
+        </ul>
+    </div>
+</footer>
